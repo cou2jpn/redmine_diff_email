@@ -25,13 +25,7 @@ module RedmineDiffEmail
                           'Committer' => @author_s,
                           'Revision'  => changeset.revision
 
-          to = @project.notified_users.select {
-            |u| u.allowed_to?(:view_changesets, @project)
-          }.collect {
-            |u| u.mail
-          }
-          to.delete(author.mail) unless author.nil?
-          cc = author.mail unless author.nil?
+          to = @project.members.collect {|m| m.user}.select {|user| user.allowed_to?(:view_changesets, @project)}.collect {|u| u.mail}
 
           Rails.logger.info "mailing changeset to " + to.to_sentence
 
@@ -52,7 +46,6 @@ module RedmineDiffEmail
           end
 
           mail :to => to,
-               :cc => cc,
                :subject => subject
         end
 
