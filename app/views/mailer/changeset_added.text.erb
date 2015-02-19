@@ -1,9 +1,9 @@
 <%= l(:diff_email_body) %>
 * <%= l(:label_project)%>: <%= @project.name %>
-* <%= l(:field_assigned_to)%>: <%= @author %>
+* <%= l(:field_author)%>: <%= @author_s %>
 * <%= l(:label_revision)%>: <%= @changeset.revision %>
   <%= @changeset_url %>
 --
-<%= @changeset.comments %>
-
 <%= @changed_files %>
+
+<%= @changeset.comments %>

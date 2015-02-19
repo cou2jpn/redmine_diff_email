@@ -1,13 +1,9 @@
 <p><%= l(:diff_email_body) %></p>
 <ul>
     <li><strong><%= l(:label_project) %></strong>: <%= h(@project.name) %></li>
-    <li><strong><%= l(:field_assigned_to) %></strong>: <%= h(@author_s) %></li>
+    <li><strong><%= l(:field_author) %></strong>: <%= h(@author_s) %></li>
     <li><strong><%= l(:label_revision) %></strong>: <%= link_to @changeset.revision, @changeset_url %></li>
 </ul>
 <hr>
-
 <%= simple_format_without_paragraph(@changed_files) %>
-
-<% if !@is_attached %>
-  <%= textilizable(@changeset, :comments, :only_path => false) %>
-<% end %>
+<%= textilizable(@changeset, :comments, :only_path => false) %>
