@@ -1,3 +1,4 @@
 ja:
-  text_diff_email_attached: コミット時のメールに、差分ファイルを添付します。
+  text_diff_email_setting: 変更適用時にリポジトリへアクセスできるメンバーへメール通知します。
+  text_diff_email_attached: メールに差分ファイルを添付します。
   diff_email_body: リポジトリに変更が適用されました。
