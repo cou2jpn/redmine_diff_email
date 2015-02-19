@@ -9,4 +9,4 @@ Rails.configuration.to_prepare do
   require_dependency 'redmine_diff_email/patches/subversion_adapter_patch'
 end
 
-require 'redmine_diff_email/hooks/repository_form_hook'
+require_dependency 'redmine_diff_email/hooks/repository_form_hook'
