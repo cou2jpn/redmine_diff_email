@@ -17,7 +17,7 @@ module RedmineDiffEmail
 
         def changed_files(path, rev)
           if scm.respond_to?(:changed_files)
-            scm.changed_files(path, rev).join
+            scm.changed_files(path, rev).join.force_encoding("utf-8").scrub
           else
             return ''
           end
