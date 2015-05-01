@@ -25,7 +25,7 @@ module RedmineDiffEmail
                           'Committer' => @author_s,
                           'Revision'  => changeset.revision
 
-          to = @project.members.collect {|m| m.user}.select {|user| user.allowed_to?(:view_changesets, @project)}.collect {|u| u.mail}
+          to = @project.users.select {|u| u.mail_notification != 'none' && u.allowed_to?(:view_changesets, @project)}
 
           Rails.logger.info "mailing changeset to " + to.to_sentence
 
