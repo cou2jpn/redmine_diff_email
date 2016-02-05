@@ -17,12 +17,12 @@ module RedmineDiffEmail
         def changeset_added(changeset, is_attached)
 
           @project = changeset.repository.project
-
-          author = changeset.user unless changeset.user.nil?
-          @author_s = author.nil? ? changeset.author.to_s : author.login
+          # If the committer is a user of Redmine, and passes @author to mailer.rb.
+          @author = changeset.author if changeset.author.try(:mail)
+          @author_s = changeset.author.to_s
 
           redmine_headers 'Project'   => @project.identifier,
-                          'Committer' => @author_s,
+                          'Committer' => @author.try(:login) || @author_s,
                           'Revision'  => changeset.revision
 
           to = @project.users.select {|u| u.mail_notification != 'none' && u.allowed_to?(:view_changesets, @project)}
